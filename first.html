@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jay Mataji Tour & Travels</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET & ROOT VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        :root {
+            --primary-color: #ff6a00;
+            --secondary-color: #111;
+            --text-light: #fff;
+            --text-dark: #333;
+            --bg-light: #f9f9f9;
+            --whatsapp-color: #25d366;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER & NAVIGATION (Mobile First) --- */
+        header {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* Logo Space Holder */
+        .logo-placeholder {
+            width: 150px;
+            height: 50px;
+            background: #333;
+            border: 2px dashed var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            /* display: none; Change to display: block when you put your image source */
+        }
+        .header-title {
+            color: var(--text-light);
+            font-size: 16px;
+            text-align: right;
+        }
+        .header-title span {
+            color: var(--primary-color);
+            display: block;
+            font-size: 11px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-light);
+        }
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .hero p {
+            font-size: 16px;
+            color: #ddd;
+            margin-bottom: 25px;
+        }
+        .badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* --- MOVING CAR ANIMATION TRACK --- */
+        .animation-track {
+            background: #222;
+            height: 45px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px dashed #fff;
+            border-top: 2px solid #444;
+        }
+        .moving-car {
+            position: absolute;
+            bottom: 5px;
+            font-size: 24px;
+            color: var(--primary-color);
+            animation: driveLeftToRight 8s linear infinite;
+        }
+        @keyframes driveLeftToRight {
+            0% { left: -100px; transform: scaleX(1); }
+            100% { left: 100%; transform: scaleX(1); }
+        }
+
+        /* --- VEHICLE FLEET & PRICING --- */
+        .pricing-section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 8px auto 0;
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            transition: transform 0.3s;
+        }
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+        .card-body h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 26px;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .price span {
+            font-size: 14px;
+            color: #666;
+            font-weight: normal;
+        }
+        .features-list {
+            list-style: none;
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .features-list li {
+            margin: 8px 0;
+        }
+        .features-list i {
+            color: green;
+            margin-right: 5px;
+        }
+
+        /* --- QUICK CONTACT BUTTONS --- */
+        .btn-action-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .btn-act {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn-call {
+            background-color: var(--primary-color);
+        }
+        .btn-whatsapp {
+            background-color: var(--whatsapp-color);
+        }
+
+        /* --- OWNER / DRIVER INFO PROFILE --- */
+        .profile-section {
+            background-color: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        .profile-avatar {
+            width: 90px;
+            height: 90px;
+            background: #eee;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #999;
+            border: 3px solid var(--primary-color);
+        }
+        .profile-section h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .profile-section p {
+            font-size: 14px;
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* --- FIXED FLOATING BOTTOM BUTTONS FOR MOBILE --- */
+        .sticky-footer-actions {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 10px;
+            gap: 10px;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            z-index: 2000;
+        }
+
+        /* Adjust content spacing to make room for the sticky footer */
+        .pricing-section {
+            margin-bottom: 60px;
+        }
+
+        /* --- DESKTOP RESPONSIVE LAYOUTS --- */
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 42px; }
+            .hero p { font-size: 20px; }
+            .card-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            .header-title { font-size: 20px; }
+            .header-title span { font-size: 14px; }
+            .sticky-footer-actions {
+                display: none; /* Hide sticky actions on desktop */
+            }
+            .pricing-section {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-placeholder">
+                <!-- <span>YOUR LOGO HERE</span> -->
+                <img src="./image.png" alt="Logo"> 
+            </div>
+            <div class="header-title">
+                JAY MATAJI
+                <span>TOUR & TRAVELS</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <span class="badge"><i class="fa-solid fa-plane-departure"></i> AIRPORT PICKUP & DROP</span>
+        <h1>Jay Mataji Tour & Travels</h1>
+        <p>Premium, private door-to-door tours. Pick up from your home to any destination and back safely.</p>
+        
+        <div style="max-width: 400px; margin: 0 auto;">
+            <div class="btn-action-container">
+                <a href="tel:+919876543210" class="btn-act btn-call"><i class="fa-solid fa-phone"></i> Call Now</a>
+                <a href="https://wa.me/919876543210?text=Hello%20Jayubha%20Jadeja,%20I%20want%20to%20book%20a%20tour." target="_blank" class="btn-act btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="animation-track">
+        <div class="moving-car">
+            <i class="fa-solid fa-car-side"></i>
+        </div>
+    </div>
+
+    <section class="pricing-section">
+        <h2 class="section-title">Our Cabs & Pricing</h2>
+        
+        <div class="card-container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=500&q=80" alt="Sedan Car" class="card-img">
+                <div class="card-body">
+                    <h3>Comfort Sedan</h3>
+                    <p class="price">₹10 <span>/ Per KM</span></p>
+                    <ul class="features-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Perfect for up to 4 passengers</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Clean, spacious boot space</li>
+                        <li><i class="fa-solid fa-circle-check"></i> AC & Entertainment controls</li>
+                    </ul>
+                    <div class="btn-action-container">
+                        <a href="tel:+919876543210" class="btn-act btn-call"><i class="fa-solid fa-phone"></i> Call</a>
+                        <a href="https://wa.me/919876543210?text=Hi,%20I'm%20interested%20in%20booking%20the%20Sedan%20cab%20at%20Rs.10/KM." target="_blank" class="btn-act btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=500&q=80" alt="SUV Car" class="card-img">
+                <div class="card-body">
+                    <h3>Premium SUV</h3>
+                    <p class="price">₹13 <span>/ Per KM</span></p>
+                    <ul class="features-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Perfect for large family (6-7 seats)</li>
+                        <li><i class="fa-solid fa-circle-check"></i> High Ground Clearance & Extra Comfort</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Heavy luggage handling capacity</li>
+                    </ul>
+                    <div class="btn-action-container">
+                        <a href="tel:+919876543210" class="btn-act btn-call"><i class="fa-solid fa-phone"></i> Call</a>
+                        <a href="https://wa.me/919876543210?text=Hi,%20I'm%20interested%20in%20booking%20the%20SUV%20cab%20at%20Rs.13/KM." target="_blank" class="btn-act btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile-section">
+        <div class="profile-avatar">
+            <i class="fa-solid fa-user-tie"></i>
+        </div>
+        <h2>Owner & Chauffeur: JAYUBHA JADEJA</h2>
+        <p>Your journey is entirely private. I personally drive you safely from your doorstep, manage the routes efficiently, and ensure you arrive right back at your home with zero hassle.</p>
+    </section>
+
+    <div class="sticky-footer-actions">
+        <a href="tel:+919876543210" class="btn-act btn-call"><i class="fa-solid fa-phone"></i> Tap to Call</a>
+        <a href="https://wa.me/919876543210?text=Hello%20Jayubha%20Ji,%20I%20want%20to%20enquire%20about%20a%20ride." target="_blank" class="btn-act btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+    </div>
+
+</body>
+</html>
