@@ -3,546 +3,548 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jay Mataji Tour & Travels | Car Hire & Taxi Service</title>
-    <!-- FontAwesome for UI Icons -->
+    <title>Shree Jay Mataji Tours & Travellers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- BRANDED YELLOW THEME COLORS --- */
+        /* --- CSS Reset & Variables --- */
         :root {
-            --ui-yellow: #f4c400;      /* Vibrant golden yellow theme primary */
-            --ui-cream: #ffe365;       /* Balanced mid-shade yellow background replacing stark white */
-            --ui-pink: #ff6f75;        /* Bright coral pink accent for primary calls-to-action */
-            --ui-dark: #1b1b1b;        /* Dark charcoal contrast for headers and panels */
-            --bg-gray: #f6f2dd;        /* Darker, warm baseline canvas backdrop */
-            --text-dark: #111111;
-            --whatsapp-green: #25d366;
+            --primary: #f39c12; /* Golden/Orange accent */
+            --primary-hover: #d68910;
+            --dark: #1e272e;
+            --light: #f5f6fa;
+            --white: #ffffff;
+            --text: #2f3640;
+            --text-light: #718093;
+            --success: #27ae60;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: #ffe365;
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
-
-        /* --- TOP UTILITY INFORMATION BAR --- */
-        .top-info-strip {
-            background-color: var(--ui-dark);
-            color: #ffffff;
-            font-size: 13px;
-            padding: 10px 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            text-align: center;
-            border-bottom: 3px solid var(--ui-yellow);
-        }
-        .top-info-strip a {
-            color: var(--ui-yellow);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* --- NAVIGATION BAR & BRAND LOGO FRAME --- */
-        header {
-            background-color: var(--ui-cream);
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-bottom: 1px solid #e2dbbe;
-        }
-        .nav-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Logo Area Frame Box */
-        .logo-frame {
-            width: 200px;
-            height: 65px;
-            border: 2px dashed #bbb;
-            background: rgba(0, 0, 0, 0.03);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--ui-dark);
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .logo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: none;
-        }
-
-        .company-heading {
-            text-align: center;
-        }
-        .company-heading h1 {
-            font-size: 24px;
-            color: var(--ui-dark);
-            font-weight: 900;
-            letter-spacing: -0.5px;
-        }
-        .company-heading p {
-            font-size: 12px;
-            color: #555;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 3px;
-            letter-spacing: 0.5px;
-        }
-
-        /* --- THEMED HERO BLOCK --- */
-        .hero-showcase {
-            background-color: var(--ui-yellow);
-            padding: 50px 20px;
-            text-align: center;
-            color: #ffffff;
-        }
-        .hero-showcase h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            font-weight: 900;
-            color: #ffffff;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.15);
-            text-transform: uppercase;
-        }
-        .hero-showcase p {
-            font-size: 15px;
-            color: var(--ui-dark);
-            max-width: 650px;
-            margin: 0 auto 30px auto;
+            background-color: var(--light);
+            color: var(--text);
             line-height: 1.6;
-            font-weight: bold;
         }
 
-        /* --- CAR ANIMATION HIGHWAY STRIP --- */
-        /* --- BIG 2D TAXI HIGHWAY STRIP --- */
-        .animation-highway {
-            background: var(--ui-dark);
-            height: 60px; /* Increased height to accommodate larger 2D taxi */
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
             width: 100%;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 4px dashed var(--ui-yellow);
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        /* The 2D Taxi Graphic */
-        .running-car {
-            position: absolute;
-            bottom: 5px;
-            font-size: 45px; /* Significantly larger */
-            color: var(--ui-yellow);
-            animation: driveAcrossRoad 12s linear infinite;
-            filter: drop-shadow(0 0 5px rgba(244, 196, 0, 0.5));
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--dark); }
+        .logo span { color: var(--primary); }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .btn-call {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-call:hover { background-color: var(--primary-hover); color: white;}
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(30, 39, 46, 0.8), rgba(30, 39, 46, 0.8)), url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            color: var(--white);
+            margin-top: 60px;
         }
 
-        @keyframes driveAcrossRoad {
-            0% { left: -150px; } /* Start off-screen */
-            100% { left: 105%; } /* End off-screen */
+        .hero-content { max-width: 50%; }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; color: #dcdde1; }
+        .stats-badge { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; display: inline-block; margin-bottom: 20px;}
+
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 0.8rem; border: 1px solid #dcdde1; border-radius: 5px; outline: none;
         }
+        .btn-submit {
+            width: 100%; background: var(--primary); color: white; border: none; padding: 1rem;
+            border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.3s;
+        }
+        .btn-submit:hover { background: var(--primary-hover); }
+
+        /* --- Global Section Styles --- */
+        section { padding: 5rem 5%; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.5rem; color: var(--dark); }
+        .section-header p { color: var(--text-light); }
+
+        /* --- Cards Grid (Services & Fleet) --- */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         
-        @keyframes driveAcrossRoad {
-            0% { left: -100px; }
-            100% { left: 100%; }
-        }
-
-        /* --- SERVICE PACKAGES SECTIONS --- */
-        .content-container {
-            padding: 35px 15px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .ui-section-title {
-            font-size: 22px;
-            color: var(--ui-dark);
-            text-align: center;
-            margin-bottom: 25px;
-            font-weight: 900;
-            text-transform: uppercase;
-        }
-        .ui-section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
-            background-color: var(--ui-yellow);
-            margin: 8px auto 0 auto;
-        }
-
-        /* Fleet Card Structure */
-        .fleet-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            margin-bottom: 35px;
-        }
-        .fleet-card {
-            background: var(--ui-cream);
-            border: 1px solid #e2dbbe;
-            border-radius: 6px;
+        .card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 0 0 2rem 0;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            position: relative;
         }
-        .fleet-img {
+        .card-content { padding: 0 2rem; }
+        .card:hover { transform: translateY(-10px); }
+        .card-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            margin-bottom: 1.5rem;
         }
-        .fleet-info {
-            padding: 20px;
-        }
-        .fleet-info h3 {
-            font-size: 20px;
-            color: var(--ui-dark);
-            font-weight: 800;
-        }
-        .ui-rate-badge {
-            background-color: var(--ui-yellow);
-            padding: 10px 14px;
-            font-size: 20px;
-            font-weight: 900;
-            color: var(--ui-dark);
-            margin: 12px 0;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        .ui-rate-badge span {
-            font-size: 13px;
-            color: #333;
-            font-weight: normal;
-        }
-        
-        .fleet-features {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-        .fleet-features li {
-            font-size: 14px;
-            padding: 8px 0;
-            color: #333;
-            border-bottom: 1px solid #e2dbbe;
-        }
-        .fleet-features li i {
-            color: var(--ui-dark);
-            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
-            margin-right: 8px;
-        }
+        .card i { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; }
+        .card h3 { margin-bottom: 1rem; }
+        .card ul { text-align: left; margin: 1rem 0; color: var(--text-light); }
+        .card ul li { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px;}
+        .card ul li i { font-size: 1rem; color: var(--success); margin-bottom: 0; }
 
-        /* --- INTERACTIVE BUTTON SYSTEM --- */
-        .grid-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .ui-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 10px;
-            text-decoration: none;
-            color: #ffffff;
+        .price-tag {
+            background: var(--dark);
+            color: var(--white);
             font-weight: bold;
-            font-size: 14px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            text-align: center;
-            transition: opacity 0.2s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 1rem;
         }
-        .ui-btn:hover {
-            opacity: 0.9;
-        }
-        .btn-ui-call {
-            background-color: var(--ui-pink);
-            box-shadow: 0 2px 4px rgba(255,111,117,0.3);
-        }
-        .btn-ui-whatsapp {
-            background-color: var(--whatsapp-green);
-        }
+        .price-tag span { color: var(--primary); }
 
-        /* --- CONTACT US INFORMATION FOOTER --- */
-        .contact-us-bar {
-            background-color: var(--ui-dark);
-            color: #ffffff;
-            padding: 40px 20px;
-            border-top: 5px solid var(--ui-yellow);
-        }
-        .contact-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        .contact-block h4 {
-            color: var(--ui-yellow);
-            font-size: 18px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            font-weight: 800;
-            border-bottom: 1px solid #333;
-            padding-bottom: 8px;
-        }
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 14px;
-            font-size: 14px;
-            color: #e0e0e0;
-            line-height: 1.5;
-        }
-        .contact-item i {
-            color: var(--ui-yellow);
-            font-size: 16px;
-            margin-top: 2px;
-        }
-        .contact-item strong {
-            color: #ffffff;
-            display: block;
-            margin-bottom: 2px;
-        }
-        .contact-item a {
-            color: #ffffff;
-            text-decoration: none;
-        }
+        /* --- Stats Section --- */
+        .stats { background: var(--dark); color: white; display: flex; justify-content: space-around; flex-wrap: wrap; padding: 3rem 5%; text-align: center; }
+        .stat-item h2 { font-size: 2.5rem; color: var(--primary); }
 
-        /* --- STICKY MOBILE BOTTOM BAR --- */
-        .mobile-quick-tap {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--ui-cream);
+        /* --- Why Us Section --- */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .feature { display: flex; align-items: flex-start; gap: 1rem; background: var(--white); padding: 1.5rem; border-radius: 8px; }
+        .feature i { font-size: 2rem; color: var(--primary); }
+        .feature h4 { margin-bottom: 0.5rem; }
+
+        /* --- Reviews & Form Section --- */
+        .reviews-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 8px;
-            gap: 8px;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
-            z-index: 9999;
-            border-top: 2px solid #e2dbbe;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
         }
-
-        /* Padding compensation for mobile footer */
-        .content-container {
-            margin-bottom: 65px;
+        @media (max-width: 992px) {
+            .reviews-container { grid-template-columns: 1fr; }
         }
+        .review-card { background: var(--white); padding: 2rem; border-radius: 10px; border-top: 4px solid var(--primary); margin-bottom: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .stars { color: #f1c40f; margin-bottom: 1rem; }
+        .review-author { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
+        .author-icon { background: var(--dark); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; text-transform: uppercase;}
 
-        /* --- TABLET / PC SCALE --- */
-        @media (min-width: 768px) {
-            .top-info-strip {
-                flex-direction: row;
-                justify-content: space-between;
-                padding: 10px 40px;
-            }
-            .nav-wrapper {
-                flex-direction: row;
-                justify-content: space-between;
-                padding: 0 20px;
-            }
-            .company-heading {
-                text-align: right;
-            }
-            .company-heading h1 {
-                font-size: 30px;
-            }
-            .hero-showcase {
-                padding: 65px 20px;
-            }
-            .hero-showcase h2 {
-                font-size: 38px;
-            }
-            .fleet-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .contact-wrapper {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            .contact-block {
-                flex: 1;
-            }
-            .mobile-quick-tap {
-                display: none;
-            }
-            .content-container {
-                margin-bottom: 0;
-            }
+        .add-review-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        .add-review-form h3 { margin-bottom: 1.5rem; }
+        .rating-select {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #ccc;
+            cursor: pointer;
+        }
+        .rating-select i.active { color: #f1c40f; }
+
+        /* --- Contact & Footer --- */
+        footer { background: var(--dark); color: white; padding: 3rem 5% 1rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-grid h4 { color: var(--primary); margin-bottom: 1rem; }
+        .footer-grid ul li { margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 10px; }
+        .footer-grid ul li i { color: var(--primary); margin-top: 5px; }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .hero { flex-direction: column; justify-content: center; text-align: center; gap: 2rem; height: auto; padding: 8rem 5% 4rem;}
+            .hero-content { max-width: 100%; }
+            .booking-form { width: 100%; max-width: 500px; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP INFORMATION STRIP -->
-    <div class="top-info-strip">
-        <div><i class="fa-solid fa-star" style="color:var(--ui-yellow);"></i> 100% Private Guided Tour Comfort</div>
-        <div><i class="fa-solid fa-headset"></i> Contact Driver: <a href="tel:+919876543210">Jayubha Jadeja</a></div>
-    </div>
+    <nav id="navbar">
+        <div class="logo"><i class="fa-solid fa-taxi"></i> JAY MATAJI <span>TOUR & TRAVELLES</span></div>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#fleet">Our Fleet</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn-call"><i class="fa-solid fa-phone"></i> Book Now</a>
+    </nav>
 
-    <!-- HEADER LOGO & TITLE -->
-    <header>
-        <div class="nav-wrapper">
-            <div class="logo-frame">
-                
-                <img src="/image.png" alt="Company Logo">
-            </div>
-            <div class="company-heading">
-                <h1>JAY MATAJI TOUR &amp; TRAVELS</h1>
-                <p>Private Door-To-Door Tour &amp; Car Rental Service</p>
-            </div>
-        </div>
-    </header>
-
-    <!-- FULL WIDTH YELLOW HERO SHOWCASE -->
-    <section class="hero-showcase">\<span class="badge"><i class="fa-solid fa-plane-departure"></i> AIRPORT PICKUP & DROP</span>
-        <h2>Welcome to Jay Mataji Travels</h2>
-        <p>Premium customized home-to-home private travel packages. We pick you up right from your doorstep, chauffeur you seamlessly across all holiday attractions, and return you back inside your home safely.</p>
-        
-        <div style="max-width: 450px; margin: 0 auto;">
-            <div class="grid-actions">
-                <a href="tel:+919876543210" class="ui-btn btn-ui-call"><i class="fa-solid fa-phone"></i> Call To Book</a>
-                <a href="https://wa.me/919876543210?text=Hello%20Jayubha%20Ji,%20I%20visited%20your%20website%20and%20want%20to%20plan%20a%20private%20tour." target="_blank" class="ui-btn btn-ui-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Chat</a>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="stats-badge">⭐ Gujarat's #1 Trusted Travel Partner</div>
+            <h1>Premium Travel,<br>Reliable Journeys.</h1>
+            <p>Experience the ultimate comfort and safety with <strong>Jay Mataji Tour & Travelles</strong>. Managed by <strong>Jayubha Jadeja</strong>, we ensure premium airport transfers, local city commutes, and smooth outstation journeys across Gujarat.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+                <span><i class="fa-solid fa-check" style="color: var(--primary)"></i> Background Verified Drivers</span>
+                <span><i class="fa-solid fa-check" style="color: var(--primary)"></i> 24/7 Dedicated Support</span>
+                <span><i class="fa-solid fa-plane-departure" style="color: var(--primary)"></i> Expert Airport Pickup & Drop</span>
             </div>
         </div>
     </section>
 
-    <!-- MOVING ANIMATED CAR TRACK STRIP -->
-    <div class="animation-highway">
-        <div class="running-car">
-            <i class="fa-solid fa-taxi"></i>
+    <section id="services">
+        <div class="section-header">
+            <h2>Our Expertise</h2>
+            <p>Tailored Travel Solutions designed around your specific routing needs.</p>
         </div>
-    </div>
+        <div class="grid-3">
+            <div class="card" style="border: 2px solid var(--primary);">
+                <span style="background: var(--primary); color: white; padding: 2px 10px; border-radius: 10px; font-size: 0.8rem; position: absolute; top: 10px; right: 20px; font-weight:bold;">Specialty</span>
+                <div class="card-content" style="padding-top: 2rem;">
+                    <i class="fa-solid fa-plane-arrival"></i>
+                    <h3>Airport Pickup & Drop</h3>
+                    <p>Punctual, stress-free premium transfers connecting Amreli and all major Gujarat operational airports.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Flight Delay Tracking</li>
+                        <li><i class="fa-solid fa-check"></i> Meet & Greet Luggage Care</li>
+                        <li><i class="fa-solid fa-check"></i> Zero Waiting Charges</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content" style="padding-top: 2rem;">
+                    <i class="fa-solid fa-road"></i>
+                    <h3>Outstation Rides</h3>
+                    <p>Comfortable long-distance rides tailored for family stays, vacations, or businesses.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Highway Trained Experts</li>
+                        <li><i class="fa-solid fa-check"></i> Flexible Routes</li>
+                        <li><i class="fa-solid fa-check"></i> All-Inclusive Transparent Structure</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content" style="padding-top: 2rem;">
+                    <i class="fa-solid fa-city"></i>
+                    <h3>City Taxi</h3>
+                    <p>Swift local point-to-point transit setup for your daily commutes or commercial events.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Fully Air Conditioned</li>
+                        <li><i class="fa-solid fa-check"></i> Safe Local Protocols</li>
+                        <li><i class="fa-solid fa-check"></i> Instant Deploy Options</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- MAIN FLEET CARDS -->
-    <main class="content-container">
-        <h2 class="ui-section-title">Our Cabs &amp; Pricing</h2>
+    <section id="fleet" style="background: var(--white);">
+        <div class="section-header">
+            <h2>Our Managed Fleet</h2>
+            <p>Travel in pristine comfort. Meticulously serviced vehicles prepared for structural safety.</p>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <img src="dzire.webp" alt="Budget Sedan" class="card-img">
+                <div class="card-content">
+                    <h3>Budget Sedan</h3>
+                    <p>Perfect for solo, corporate, or small family journeys with excellent trunk space.</p>
+                    <div style="display: flex; justify-content: center; gap: 15px; margin: 15px 0; color: var(--text-light);">
+                        <span><i class="fa-solid fa-user"></i> 4+1</span>
+                        <span><i class="fa-solid fa-snowflake"></i> AC</span>
+                        <span><i class="fa-solid fa-suitcase"></i> 2 Bags</span>
+                    </div>
+                    <div class="price-tag">Just <span>₹10</span> / KM</div>
+                </div>
+            </div>
+            <div class="card" style="border: 2px solid var(--primary);">
+                <img src="ertiga.png" alt="Maruti Ertiga SUV" class="card-img">
+                <div class="card-content">
+                    <h3>Premium SUV (Ertiga)</h3>
+                    <p>Spacious, ergonomic MUV design optimal for large families, group tours, or luxury trips.</p>
+                    <div style="display: flex; justify-content: center; gap: 15px; margin: 15px 0; color: var(--text-light);">
+                        <span><i class="fa-solid fa-user"></i> 6+1</span>
+                        <span><i class="fa-solid fa-snowflake"></i> AC Dual</span>
+                        <span><i class="fa-solid fa-suitcase"></i> 4 Bags</span>
+                    </div>
+                    <div class="price-tag">Just <span>₹13</span> / KM</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item">
+            <h2>10K+</h2>
+            <p>Trips Completed</p>
+        </div>
+        <div class="stat-item">
+            <h2>500+</h2>
+            <p>Happy Clients</p>
+        </div>
+        <div class="stat-item">
+            <h2>8+</h2>
+            <p>Years Experience</p>
+        </div>
+        <div class="stat-item">
+            <h2>50+</h2>
+            <p>Cities Covered</p>
+        </div>
+    </section>
+
+    <section id="why-us">
+        <div class="section-header">
+            <h2>The Difference</h2>
+            <p>Why We Are Your Best Travel Companion</p>
+        </div>
+        <div class="grid-2">
+            <div class="feature">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div>
+                    <h4>Safety First Protocol</h4>
+                    <p>All vehicles undergo routine mechanical validation checks. Drivers strictly verified under strict parameters.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <i class="fa-solid fa-wallet"></i>
+                <div>
+                    <h4>Transparent Pricing</h4>
+                    <p>No unexpected overhead conditions. Clear toll strategies, upfront breakdown options discussed transparently.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <i class="fa-solid fa-headset"></i>
+                <div>
+                    <h4>24/7 Roadside Support</h4>
+                    <p>Dedicated tracking monitoring systems available round the clock to ensure you remain fully secured.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <div>
+                    <h4>Expert Route Knowledge</h4>
+                    <p>Our operational drivers understand highways, shortcuts, and comfortable rest spots seamlessly across Gujarat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" style="background: var(--white);">
+        <div class="section-header">
+            <h2>What Our Passengers Say</h2>
+            <p>Real experiences shared by verified travelers who rode with us.</p>
+        </div>
         
-        <div class="fleet-grid">
-            <!-- COMFORT SEDAN VEHICLE CARD -->
-            <div class="fleet-card">
-                <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=500&q=80" alt="Comfort Sedan Cab" class="fleet-img">
-                <div class="fleet-info">
-                    <h3>Comfort Sedan Cab</h3>
-                    <div class="ui-rate-badge">₹10 <span>/ Per KM</span></div>
-                    <ul class="fleet-features">
-                        <li><i class="fa-solid fa-square-check"></i> Passenger Capacity: Comfortably seats up to 4 + 1 Driver</li>
-                        <li><i class="fa-solid fa-square-check"></i> High-Efficiency Air Conditioning (AC)</li>
-                        <li><i class="fa-solid fa-square-check"></i> Best for Airport Trips &amp; Direct One-Way Outstation Travel</li>
-                    </ul>
-                    <div class="grid-actions">
-                        <a href="tel:+919876543210" class="ui-btn btn-ui-call"><i class="fa-solid fa-phone"></i> Book Sedan</a>
-                        <a href="https://wa.me/919876543210?text=Hi%20Jayubha%20Ji,%20I'm%20interested%20in%20booking%20the%20Sedan%20Cab%20at%20Rs.10/KM." target="_blank" class="ui-btn btn-ui-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                    </div>
-                </div>
-            </div>
+        <div class="reviews-container">
+            <div id="reviewsList"></div>
 
-            <!-- PREMIUM FAMILY SUV VEHICLE CARD -->
-            <div class="fleet-card">
-                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=500&q=80" alt="Premium SUV Cab" class="fleet-img">
-                <div class="fleet-info">
-                    <h3>Premium SUV Cab</h3>
-                    <div class="ui-rate-badge">₹13 <span>/ Per KM</span></div>
-                    <ul class="fleet-features">
-                        <li><i class="fa-solid fa-square-check"></i> Passenger Capacity: Full 6-7 Seating Layout Options</li>
-                        <li><i class="fa-solid fa-square-check"></i> High Ground Clearance with Heavy Top Carrier Storage</li>
-                        <li><i class="fa-solid fa-square-check"></i> Perfect choice for Family Hill-Station Vacation Tours</li>
-                    </ul>
-                    <div class="grid-actions">
-                        <a href="tel:+919876543210" class="ui-btn btn-ui-call"><i class="fa-solid fa-phone"></i> Book SUV</a>
-                        <a href="https://wa.me/919876543210?text=Hi%20Jayubha%20Ji,%20I'm%20interested%20in%20booking%20the%20SUV%20Cab%20at%20Rs.13/KM." target="_blank" class="ui-btn btn-ui-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            <div class="add-review-form">
+                <h3>Leave a Review</h3>
+                <form id="reviewSubmitForm">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="revName" placeholder="Enter your full name" required>
                     </div>
-                </div>
-            </div>
-
-            <!-- HYUNDAI ARTICA VEHICLE CARD -->
-            <div class="fleet-card">
-                <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=500&q=80" alt="Hyundai Artica Cab" class="fleet-img">
-                <div class="fleet-info">
-                    <h3>Hyundai Artica</h3>
-                    <div class="ui-rate-badge">₹12 <span>/ Per KM</span></div>
-                    <ul class="fleet-features">
-                        <li><i class="fa-solid fa-square-check"></i> Comfortable hatchback for city travel and short tours</li>
-                        <li><i class="fa-solid fa-square-check"></i> Smooth ride with AC and spacious boot</li>
-                        <li><i class="fa-solid fa-square-check"></i> Ideal for airport pickups, local sightseeing, and quick trips</li>
-                    </ul>
-                    <div class="grid-actions">
-                        <a href="tel:+919876543210" class="ui-btn btn-ui-call"><i class="fa-solid fa-phone"></i> Book Artica</a>
-                        <a href="https://wa.me/919876543210?text=Hi%20Jayubha%20Ji,%20I'm%20interested%20in%20booking%20the%20Artica%20Cab%20at%20Rs.12/KM." target="_blank" class="ui-btn btn-ui-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    <div class="form-group">
+                        <label>Route Details</label>
+                        <input type="text" id="revRoute" placeholder="e.g. Amreli to Ahmedabad Airport" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="rating-select" id="starRatingSelect">
+                            <i class="fa-solid fa-star active" data-value="1"></i>
+                            <i class="fa-solid fa-star active" data-value="2"></i>
+                            <i class="fa-solid fa-star active" data-value="3"></i>
+                            <i class="fa-solid fa-star active" data-value="4"></i>
+                            <i class="fa-solid fa-star active" data-value="5"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Experience</label>
+                        <input type="text" id="revComment" placeholder="Share your feedback here..." required style="padding-bottom: 3rem;">
+                    </div>
+                    <button type="submit" class="btn-submit">Submit Review</button>
+                </form>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- DETAILED CONTACT US INFOBAR PANEL -->
-    <footer class="contact-us-bar">
-        <div class="contact-wrapper">
-            
-            <div class="contact-block">
-                <h4>About Our Services</h4>
-                <div class="contact-item">
-                    <p><strong>CAB NAME: JAY MATAJI TOUR &amp; TRAVELS</strong><br>
-                    Premium personal touring agency operated directly by driver-owner Jayubha Jadeja. Dedicated to offering safe, entirely private custom door-to-door tours, outstation weekend round-trips, and reliable 24/7 airport transfers.</p>
-                </div>
+    <footer id="contact">
+        <div class="footer-grid">
+            <div>
+                <div class="logo" style="color: white; margin-bottom: 1rem;"><i class="fa-solid fa-taxi"></i> JAY MATAJI <span>TRAVELS</span></div>
+                <p style="color: #bbb;">Gujarat's Most Trusted Airport Pickup, Drop, and Long Route Tour Service Provider.</p>
+                <p style="color: var(--primary); font-weight: 600; margin-top: 1rem;">Owner: JAYUBHA JADEJA</p>
             </div>
-
-            <div class="contact-block">
-                <h4>Contact Us</h4>
-                
-                <div class="contact-item">
-                    <i class="fa-solid fa-user-check"></i>
-                    <div>
-                        <strong>Owner &amp; Chauffeur</strong>
-                        JAYUBHA JADEJA
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fa-solid fa-phone"></i>
-                    <div>
-                        <strong>Direct Hotline Dial</strong>
-                        <a href="tel:+919876543210">+91 98765 43210</a> (Tap to Call)
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <div>
-                        <strong>WhatsApp Live Chat Support</strong>
-                        <a href="https://wa.me/919876543210" target="_blank">Click to Message Directly</a>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fa-solid fa-route"></i>
-                    <div>
-                        <strong>Specialization Area</strong>
-                        Airport Pickup &amp; Drops, Personalized Multi-City Vacation Tours &amp; Round Trips.
-                    </div>
-                </div>
+            <div>
+                <h4>Contact Info</h4>
+                <ul style="color: #bbb;">
+                    <li><i class="fa-solid fa-location-dot"></i> Adarsh Nagar, Vraj Kunj, Amreli - 365601, Gujarat</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 (Call for Booking)</li>
+                    <li><i class="fa-solid fa-clock"></i> 24 Hours / 7 Days Active</li>
+                </ul>
             </div>
-
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="color: #bbb;">
+                    <li><a href="#services">Our Services</a></li>
+                    <li><a href="#fleet">Our Fleet</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Jay Mataji Tour & Travelles. All rights reserved.
         </div>
     </footer>
 
-    <!-- MOBILE FLOATING CALL BAR -->
-    <div class="mobile-quick-tap">
-        <a href="tel:+919876543210" class="ui-btn btn-ui-call"><i class="fa-solid fa-phone"></i> Tap to Call</a>
-        <a href="https://wa.me/919876543210?text=Hello%20Jayubha%20Ji,%20I'm%20on%20your%20website%20and%20want%20to%20enquire%20about%20a%20ride." target="_blank" class="ui-btn btn-ui-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-    </div>
+    <script>
+       // Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
 
+// Sticky Navbar shadow on scroll
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        nav.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+    } else {
+        nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    }
+});
+
+// --- Dynamic Server-Side Live Sync Engine ---
+async function fetchAndRenderReviews() {
+    const reviewsContainer = document.getElementById('reviewsList');
+    
+    try {
+        // Hit the Vercel Serverless api route
+        const response = await fetch('/api/get-reviews');
+        const liveReviews = await response.json();
+
+        reviewsContainer.innerHTML = '';
+        if (liveReviews.length === 0) {
+            reviewsContainer.innerHTML = '<p>No reviews posted yet.</p>';
+            return;
+        }
+
+        liveReviews.forEach(rev => {
+            let ratingStars = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
+            let initial = rev.name ? rev.name.charAt(0) : 'J';
+            
+            reviewsContainer.innerHTML += `
+                <div class="review-card">
+                    <div class="stars">${ratingStars}</div>
+                    <p>"${rev.comment}"</p>
+                    <div class="review-author">
+                        <div class="author-icon">${initial}</div>
+                        <div>
+                            <strong>${rev.name}</strong><br>
+                            <small>${rev.route}</small>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    } catch (error) {
+        console.error('Database connection breakdown:', error);
+        reviewsContainer.innerHTML = '<p style="color:red;">Failed to retrieve server-side reviews database.</p>';
+    }
+}
+
+// Star UI Selection Mechanics
+let userSelectedRating = 5;
+const starsSelector = document.querySelectorAll('#starRatingSelect i');
+starsSelector.forEach(star => {
+    star.addEventListener('click', function() {
+        userSelectedRating = parseInt(this.getAttribute('data-value'));
+        starsSelector.forEach(s => {
+            if(parseInt(s.getAttribute('data-value')) <= userSelectedRating) {
+                s.classList.add('active');
+            } else {
+                s.classList.remove('active');
+            }
+        });
+    });
+});
+
+// Submit customer data payload directly to backend API
+document.getElementById('reviewSubmitForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const name = document.getElementById('revName').value;
+    const route = document.getElementById('revRoute').value;
+    const comment = document.getElementById('revComment').value;
+
+    try {
+        const payload = { name, route, rating: userSelectedRating, comment };
+        
+        const response = await fetch('/api/save-review', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+            alert('Thank you! Your feedback has been stored permanently on our server database.');
+            this.reset();
+            // Reset stars UI back to 5 stars
+            starsSelector.forEach(s => s.classList.add('active'));
+            userSelectedRating = 5;
+            
+            // Re-fetch reviews to display the submission instantly
+            fetchAndRenderReviews();
+        } else {
+            alert('Failed to transmit feedback data to server endpoint.');
+        }
+    } catch (error) {
+        console.error('Error submitting review:', error);
+        alert('Server unreachable at this moment.');
+    }
+});
+
+// Boot up sequence
+document.addEventListener('DOMContentLoaded', fetchAndRenderReviews);
+    </script>
 </body>
 </html>
