@@ -1,13 +1,17 @@
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(455).json({ message: 'Method Not Allowed' });
+export default async function handler(request) {
+  // Enforce method block validation
+  if (request.method !== 'POST') {
+    return new Response(JSON.stringify({ message: 'Method Not Allowed' }), { status: 405 });
   }
 
-  const SUPABASE_URL = "process.env.SUPABASE_URL";
-  const SUPABASE_KEY = "process.env.SUPABASE_SERVICE_ROLE_KEY";
-  const { name, route, rating, comment } = req.body;
+  const SUPABASE_URL = process.env.SUPABASE_URL;
+  const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   try {
+    // Correctly extract body elements in standard fetch syntax
+    const body = await request.json();
+    const { name, route, rating, comment } = body;
+
     const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
       method: 'POST',
       headers: {
@@ -18,9 +22,14 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({ name, route, rating, comment })
     });
+    
     const data = await response.json();
-    return res.status(200).json({ success: true, data });
+    
+    return new Response(JSON.stringify({ success: true, data }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
   }
 }
