@@ -435,6 +435,7 @@
 
     <script>
        // Smooth scrolling for navigation links
+// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -454,18 +455,31 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// --- Dynamic Server-Side Live Sync Engine ---
+// --- Public Direct Database Configuration ---
+// It is 100% safe to leave these keys completely public on GitHub.
+const SUPABASE_URL = "YOUR_SUPABASE_URL"; 
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY"; // Use the public 'anon' key, NOT the service_role key
+
+// Function 1: Get Reviews directly from the database server
 async function fetchAndRenderReviews() {
     const reviewsContainer = document.getElementById('reviewsList');
     
     try {
-        // Hit the Vercel Serverless api route
-        const response = await fetch('/api/get-reviews');
-        const liveReviews = await response.json();
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews?select=*&order=created_at.desc`, {
+            method: 'GET',
+            headers: {
+                "apikey": SUPABASE_ANON_KEY,
+                "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+            }
+        });
 
+        if (!response.ok) throw new Error('Database server refused communication');
+        
+        const liveReviews = await response.json();
         reviewsContainer.innerHTML = '';
+
         if (liveReviews.length === 0) {
-            reviewsContainer.innerHTML = '<p>No reviews posted yet.</p>';
+            reviewsContainer.innerHTML = '<p style="color:var(--text-light)">No reviews found. Be the first to add one!</p>';
             return;
         }
 
@@ -488,12 +502,12 @@ async function fetchAndRenderReviews() {
             `;
         });
     } catch (error) {
-        console.error('Database connection breakdown:', error);
-        reviewsContainer.innerHTML = '<p style="color:red;">Failed to retrieve server-side reviews database.</p>';
+        console.error('Error fetching data:', error);
+        reviewsContainer.innerHTML = '<p style="color:red;">Unable to load live reviews from database server.</p>';
     }
 }
 
-// Star UI Selection Mechanics
+// Star Rating Interactive Selection Setup
 let userSelectedRating = 5;
 const starsSelector = document.querySelectorAll('#starRatingSelect i');
 starsSelector.forEach(star => {
@@ -509,41 +523,54 @@ starsSelector.forEach(star => {
     });
 });
 
-// Submit customer data payload directly to backend API
+// Function 2: Send Review directly to the database server
 document.getElementById('reviewSubmitForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const name = document.getElementById('revName').value;
     const route = document.getElementById('revRoute').value;
     const comment = document.getElementById('revComment').value;
 
+    const payload = { 
+        name: name, 
+        route: route, 
+        rating: userSelectedRating, 
+        comment: comment 
+    };
+
     try {
-        const payload = { name, route, rating: userSelectedRating, comment };
-        
-        const response = await fetch('/api/save-review', {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                "apikey": SUPABASE_ANON_KEY,
+                "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+                "Prefer": "return=representation"
+            },
             body: JSON.stringify(payload)
         });
 
         if (response.ok) {
-            alert('Thank you! Your feedback has been stored permanently on our server database.');
+            alert('Thank you! Your review has been saved directly to the database server.');
             this.reset();
-            // Reset stars UI back to 5 stars
+            
+            // Reset stars back to a 5-star default
             starsSelector.forEach(s => s.classList.add('active'));
             userSelectedRating = 5;
             
-            // Re-fetch reviews to display the submission instantly
+            // Refresh layout dynamically without reloading page
             fetchAndRenderReviews();
         } else {
-            alert('Failed to transmit feedback data to server endpoint.');
+            const errData = await response.json();
+            console.error('Database rejection message:', errData);
+            alert('Database rejected submission. Check if RLS is disabled in Supabase.');
         }
     } catch (error) {
-        console.error('Error submitting review:', error);
-        alert('Server unreachable at this moment.');
+        console.error('Network submit failure:', error);
+        alert('Server unreachable. Make sure your internet connection is active.');
     }
 });
 
-// Boot up sequence
+// Trigger dynamic loading instantly on load
 document.addEventListener('DOMContentLoaded', fetchAndRenderReviews);
     </script>
 </body>
