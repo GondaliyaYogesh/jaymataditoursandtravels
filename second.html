@@ -18,7 +18,6 @@
             --text: #2f3640;
             --text-light: #718093;
             --success: #27ae60;
-            --whatsapp: #25d366;
         }
 
         * {
@@ -66,9 +65,6 @@
             border-radius: 25px;
             font-weight: 600;
             transition: background 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
         .btn-call:hover { background-color: var(--primary-hover); color: white;}
 
@@ -88,45 +84,6 @@
         .hero-content h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; }
         .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; color: #dcdde1; }
         .stats-badge { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; display: inline-block; margin-bottom: 20px;}
-
-        /* Hero Action Buttons Styles */
-        .hero-actions { display: flex; gap: 15px; margin-top: 20px; }
-        .btn-hero-wa {
-            background-color: var(--whatsapp);
-            color: var(--white);
-            padding: 0.75rem 2rem;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: opacity 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-hero-wa:hover { opacity: 0.9; color: white; }
-
-        /* Floating Sticky WhatsApp Button Style */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--whatsapp);
-            color: #fff;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            color: #fff;
-        }
 
         .form-group { margin-bottom: 1rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; }
@@ -237,18 +194,12 @@
         @media (max-width: 992px) {
             .hero { flex-direction: column; justify-content: center; text-align: center; gap: 2rem; height: auto; padding: 8rem 5% 4rem;}
             .hero-content { max-width: 100%; }
-            .hero-actions { justify-content: center; }
             .booking-form { width: 100%; max-width: 500px; }
             .nav-links { display: none; }
         }
     </style>
 </head>
-<body style="display: flex;flex-direction: column; max-width: 100%;">
-
-    <!-- Floating Sticky WhatsApp Button -->
-    <a href="https://wa.me/919999999999?text=Hi%20Jayubha,%20I%20want%20to%20book%20a%20cab." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+<body>
 
     <nav id="navbar">
         <div class="logo"><i class="fa-solid fa-taxi"></i> JAY MATAJI <span>TOUR & TRAVELLES</span></div>
@@ -259,24 +210,18 @@
             <li><a href="#reviews">Reviews</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="tel:+919999999999" class="btn-call"><i class="fa-solid fa-phone"></i> Book Now</a>
+        <a href="#contact" class="btn-call"><i class="fa-solid fa-phone"></i> Book Now</a>
     </nav>
 
     <section class="hero">
         <div class="hero-content">
-
-            <div style="font-size: 0.5rem;">
-            <p>Experience the ultimate comfort and safety with <strong>Jay Mataji Tour & Travelles</strong>. Managed by <strong>Jayubha Jadeja</strong>, we ensure premium airport transfers, local city commutes, and smooth outstation journeys across Gujarat.</p></div>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;font-size: 0.9rem;  color: var(--text-light);">
+            <div class="stats-badge">⭐ Gujarat's #1 Trusted Travel Partner</div>
+            <h1>Premium Travel,<br>Reliable Journeys.</h1>
+            <p>Experience the ultimate comfort and safety with <strong>Jay Mataji Tour & Travelles</strong>. Managed by <strong>Jayubha Jadeja</strong>, we ensure premium airport transfers, local city commutes, and smooth outstation journeys across Gujarat.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
                 <span><i class="fa-solid fa-check" style="color: var(--primary)"></i> Background Verified Drivers</span>
                 <span><i class="fa-solid fa-check" style="color: var(--primary)"></i> 24/7 Dedicated Support</span>
                 <span><i class="fa-solid fa-plane-departure" style="color: var(--primary)"></i> Expert Airport Pickup & Drop</span>
-            </div>
-            
-            <!-- Hero Action Buttons Linked to Call and WhatsApp -->
-            <div class="hero-actions">
-                  <a href="tel:+917016551622" class="btn-call" style="padding: 0.75rem 2rem;"><i class="fa-solid fa-phone"></i> Call Jayubha</a>
-                   <a href="https://wa.me/917016551622?text=Hello%20Jayubha%20Jadeja,%20I%20would%20like%20to%20inquire%20about%20a%20cab%20booking." target="_blank" rel="noopener noreferrer" class="btn-hero-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
             </div>
         </div>
     </section>
@@ -469,7 +414,7 @@
                 <h4>Contact Info</h4>
                 <ul style="color: #bbb;">
                     <li><i class="fa-solid fa-location-dot"></i> Adarsh Nagar, Vraj Kunj, Amreli - 365601, Gujarat</li>
-                    <li><a href="tel:+917016551622" style="color:#bbb;"><i class="fa-solid fa-phone"></i> +91 99999 99999</a></li>
+                    <li><i class="fa-solid fa-phone"></i> +91 (Call for Booking)</li>
                     <li><i class="fa-solid fa-clock"></i> 24 Hours / 7 Days Active</li>
                 </ul>
             </div>
@@ -489,143 +434,117 @@
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+       // Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
         });
+    });
+});
 
-        // Sticky Navbar shadow on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
-            } else {
-                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            }
-        });
+// Sticky Navbar shadow on scroll
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        nav.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+    } else {
+        nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    }
+});
 
-        // --- Public Direct Database Configuration ---
-        // Fill your Supabase Credentials below to make the live reviews work instantly
-      // It is 100% safe to leave these keys completely public on GitHub.
-const SUPABASE_URL = "https://lxjuwsnzzzjjhstlnnac.supabase.co"; 
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx4anV3c256enpqamhzdGxubmFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyNjA3OTksImV4cCI6MjA5ODgzNjc5OX0.kgvc48jDE_yKVvp24ptbQSwIZW3KPg4APzIVuWt-VAw"; // Use the public 'anon' key, NOT the service_role key
-        // Function 1: Get Reviews directly from the database server
-        async function fetchAndRenderReviews() {
-            const reviewsContainer = document.getElementById('reviewsList');
-            
-            try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews?select=*&order=created_at.desc`, {
-                    method: 'GET',
-                    headers: {
-                        "apikey": SUPABASE_ANON_KEY,
-                        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
-                    }
-                });
+// --- Dynamic Server-Side Live Sync Engine ---
+async function fetchAndRenderReviews() {
+    const reviewsContainer = document.getElementById('reviewsList');
+    
+    try {
+        // Hit the Vercel Serverless api route
+        const response = await fetch('/api/get-reviews');
+        const liveReviews = await response.json();
 
-                if (!response.ok) throw new Error('Database server refused communication');
-                
-                const liveReviews = await response.json();
-                reviewsContainer.innerHTML = '';
-
-                if (liveReviews.length === 0) {
-                    reviewsContainer.innerHTML = '<p style="color:var(--text-light)">No reviews found. Be the first to add one!</p>';
-                    return;
-                }
-
-                liveReviews.forEach(rev => {
-                    let ratingStars = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
-                    let initial = rev.name ? rev.name.charAt(0) : 'J';
-                    
-                    reviewsContainer.innerHTML += `
-                        <div class="review-card">
-                            <div class="stars">${ratingStars}</div>
-                            <p>"${rev.comment}"</p>
-                            <div class="review-author">
-                                <div class="author-icon">${initial}</div>
-                                <div>
-                                    <strong>${rev.name}</strong><br>
-                                    <small>${rev.route}</small>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                reviewsContainer.innerHTML = '<p style="color:red;">Unable to load live reviews from database server.</p>';
-            }
+        reviewsContainer.innerHTML = '';
+        if (liveReviews.length === 0) {
+            reviewsContainer.innerHTML = '<p>No reviews posted yet.</p>';
+            return;
         }
 
-        // Star Rating Interactive Selection Setup
-        let userSelectedRating = 5;
-        const starsSelector = document.querySelectorAll('#starRatingSelect i');
-        starsSelector.forEach(star => {
-            star.addEventListener('click', function() {
-                userSelectedRating = parseInt(this.getAttribute('data-value'));
-                starsSelector.forEach(s => {
-                    if(parseInt(s.getAttribute('data-value')) <= userSelectedRating) {
-                        s.classList.add('active');
-                    } else {
-                        s.classList.remove('active');
-                    }
-                });
-            });
+        liveReviews.forEach(rev => {
+            let ratingStars = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
+            let initial = rev.name ? rev.name.charAt(0) : 'J';
+            
+            reviewsContainer.innerHTML += `
+                <div class="review-card">
+                    <div class="stars">${ratingStars}</div>
+                    <p>"${rev.comment}"</p>
+                    <div class="review-author">
+                        <div class="author-icon">${initial}</div>
+                        <div>
+                            <strong>${rev.name}</strong><br>
+                            <small>${rev.route}</small>
+                        </div>
+                    </div>
+                </div>
+            `;
         });
+    } catch (error) {
+        console.error('Database connection breakdown:', error);
+        reviewsContainer.innerHTML = '<p style="color:red;">Failed to retrieve server-side reviews database.</p>';
+    }
+}
 
-        // Function 2: Send Review directly to the database server
-        document.getElementById('reviewSubmitForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const name = document.getElementById('revName').value;
-            const route = document.getElementById('revRoute').value;
-            const comment = document.getElementById('revComment').value;
-
-            const payload = { 
-                name: name, 
-                route: route, 
-                rating: userSelectedRating, 
-                comment: comment 
-            };
-
-            try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
-                    method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        "apikey": SUPABASE_ANON_KEY,
-                        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
-                        "Prefer": "return=representation"
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    alert('Thank you! Your review has been saved directly to the database server.');
-                    this.reset();
-                    
-                    // Reset stars back to a 5-star default
-                    starsSelector.forEach(s => s.classList.add('active'));
-                    userSelectedRating = 5;
-                    
-                    // Refresh layout dynamically without reloading page
-                    fetchAndRenderReviews();
-                } else {
-                    const errData = await response.json();
-                    console.error('Database rejection message:', errData);
-                    alert('Database rejected submission. Check if RLS is disabled in Supabase.');
-                }
-            } catch (error) {
-                console.error('Network submit failure:', error);
-                alert('Server unreachable. Make sure your internet connection is active.');
+// Star UI Selection Mechanics
+let userSelectedRating = 5;
+const starsSelector = document.querySelectorAll('#starRatingSelect i');
+starsSelector.forEach(star => {
+    star.addEventListener('click', function() {
+        userSelectedRating = parseInt(this.getAttribute('data-value'));
+        starsSelector.forEach(s => {
+            if(parseInt(s.getAttribute('data-value')) <= userSelectedRating) {
+                s.classList.add('active');
+            } else {
+                s.classList.remove('active');
             }
         });
+    });
+});
 
-        // Trigger dynamic loading instantly on load
-        document.addEventListener('DOMContentLoaded', fetchAndRenderReviews);
+// Submit customer data payload directly to backend API
+document.getElementById('reviewSubmitForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const name = document.getElementById('revName').value;
+    const route = document.getElementById('revRoute').value;
+    const comment = document.getElementById('revComment').value;
+
+    try {
+        const payload = { name, route, rating: userSelectedRating, comment };
+        
+        const response = await fetch('/api/save-review', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+            alert('Thank you! Your feedback has been stored permanently on our server database.');
+            this.reset();
+            // Reset stars UI back to 5 stars
+            starsSelector.forEach(s => s.classList.add('active'));
+            userSelectedRating = 5;
+            
+            // Re-fetch reviews to display the submission instantly
+            fetchAndRenderReviews();
+        } else {
+            alert('Failed to transmit feedback data to server endpoint.');
+        }
+    } catch (error) {
+        console.error('Error submitting review:', error);
+        alert('Server unreachable at this moment.');
+    }
+});
+
+// Boot up sequence
+document.addEventListener('DOMContentLoaded', fetchAndRenderReviews);
     </script>
 </body>
 </html>
