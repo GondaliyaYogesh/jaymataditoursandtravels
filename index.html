@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jay Mataji Tour & Travels | Car Hire & Taxi Service</title>
+    <!-- FontAwesome for UI Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- BRANDED YELLOW THEME COLORS --- */
+        :root {
+            --ui-yellow: #f4c400;      /* Vibrant golden yellow theme primary */
+            --ui-cream: #ffe365;       /* Balanced mid-shade yellow background replacing stark white */
+            --ui-pink: #ff6f75;        /* Bright coral pink accent for primary calls-to-action */
+            --ui-dark: #1b1b1b;        /* Dark charcoal contrast for headers and panels */
+            --bg-gray: #f6f2dd;        /* Darker, warm baseline canvas backdrop */
+            --text-dark: #111111;
+            --whatsapp-green: #25d366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #ffe365;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- TOP UTILITY INFORMATION BAR --- */
+        .top-info-strip {
+            background-color: var(--ui-dark);
+            color: #ffffff;
+            font-size: 13px;
+            padding: 10px 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            text-align: center;
+            border-bottom: 3px solid var(--ui-yellow);
+        }
+        .top-info-strip a {
+            color: var(--ui-yellow);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* --- NAVIGATION BAR & BRAND LOGO FRAME --- */
+        header {
+            background-color: var(--ui-cream);
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #e2dbbe;
+        }
+        .nav-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Logo Area Frame Box */
+        .logo-frame {
+            width: 200px;
+            height: 65px;
+            border: 2px dashed #bbb;
+            background: rgba(0, 0, 0, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ui-dark);
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+        }
+
+        .company-heading {
+            text-align: center;
+        }
+        .company-heading h1 {
+            font-size: 24px;
+            color: var(--ui-dark);
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+        .company-heading p {
+            font-size: 12px;
+            color: #555;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 3px;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- THEMED HERO BLOCK --- */
+        .hero-showcase {
+            background-color: var(--ui-yellow);
+            padding: 50px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .hero-showcase h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+            text-transform: uppercase;
+        }
+        .hero-showcase p {
+            font-size: 15px;
+            color: var(--ui-dark);
+            max-width: 650px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+            font-weight: bold;
+        }
+
+        /* --- CAR ANIMATION HIGHWAY STRIP --- */
+        /* --- BIG 2D TAXI HIGHWAY STRIP --- */
+        .animation-highway {
+            background: var(--ui-dark);
+            height: 60px; /* Increased height to accommodate larger 2D taxi */
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px dashed var(--ui-yellow);
+        }
+
+        /* The 2D Taxi Graphic */
+        .running-car {
+            position: absolute;
+            bottom: 5px;
+            font-size: 45px; /* Significantly larger */
+            color: var(--ui-yellow);
+            animation: driveAcrossRoad 12s linear infinite;
+            filter: drop-shadow(0 0 5px rgba(244, 196, 0, 0.5));
+        }
+
+        @keyframes driveAcrossRoad {
+            0% { left: -150px; } /* Start off-screen */
+            100% { left: 105%; } /* End off-screen */
+        }
+        
+        @keyframes driveAcrossRoad {
+            0% { left: -100px; }
+            100% { left: 100%; }
+        }
+
+        /* --- SERVICE PACKAGES SECTIONS --- */
+        .content-container {
+            padding: 35px 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .ui-section-title {
+            font-size: 22px;
+            color: var(--ui-dark);
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .ui-section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: var(--ui-yellow);
+            margin: 8px auto 0 auto;
+        }
+
+        /* Fleet Card Structure */
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+        .fleet-card {
+            background: var(--ui-cream);
+            border: 1px solid #e2dbbe;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .fleet-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .fleet-info {
+            padding: 20px;
+        }
+        .fleet-info h3 {
+            font-size: 20px;
+            color: var(--ui-dark);
+            font-weight: 800;
+        }
+        .ui-rate-badge {
+            background-color: var(--ui-yellow);
+            padding: 10px 14px;
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--ui-dark);
+            margin: 12px 0;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .ui-rate-badge span {
+            font-size: 13px;
+            color: #333;
+            font-weight: normal;
+        }
+        
+        .fleet-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        .fleet-features li {
+            font-size: 14px;
+            padding: 8px 0;
+            color: #333;
+            border-bottom: 1px solid #e2dbbe;
+        }
+        .fleet-features li i {
+            color: var(--ui-dark);
+            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            margin-right: 8px;
+        }
+
+        /* --- INTERACTIVE BUTTON SYSTEM --- */
+        .grid-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .ui-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 10px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            text-align: center;
+            transition: opacity 0.2s;
+        }
+        .ui-btn:hover {
+            opacity: 0.9;
+        }
+        .btn-ui-call {
+            background-color: var(--ui-pink);
+            box-shadow: 0 2px 4px rgba(255,111,117,0.3);
+        }
+        .btn-ui-whatsapp {
+            background-color: var(--whatsapp-green);
+        }
+
+        /* --- CONTACT US INFORMATION FOOTER --- */
+        .contact-us-bar {
+            background-color: var(--ui-dark);
+            color: #ffffff;
+            padding: 40px 20px;
+            border-top: 5px solid var(--ui-yellow);
+        }
+        .contact-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .contact-block h4 {
+            color: var(--ui-yellow);
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-weight: 800;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 14px;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+        .contact-item i {
+            color: var(--ui-yellow);
+            font-size: 16px;
+            margin-top: 2px;
+        }
+        .contact-item strong {
+            color: #ffffff;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .contact-item a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        /* --- STICKY MOBILE BOTTOM BAR --- */
+        .mobile-quick-tap {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--ui-cream);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 8px;
+            gap: 8px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+            z-index: 9999;
+            border-top: 2px solid #e2dbbe;
+        }
+
+        /* Padding compensation for mobile footer */
+        .content-container {
+            margin-bottom: 65px;
+        }
+
+        /* --- TABLET / PC SCALE --- */
+        @media (min-width: 768px) {
+            .top-info-strip {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 10px 40px;
+            }
+            .nav-wrapper {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+            .company-heading {
+                text-align: right;
+            }
+            .company-heading h1 {
+                font-size: 30px;
+            }
+            .hero-showcase {
+                padding: 65px 20px;
+            }
+            .hero-showcase h2 {
+                font-size: 38px;
+            }
+            .fleet-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact-wrapper {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .contact-block {
+                flex: 1;
+            }
+            .mobile-quick-tap {
+                display: none;
+            }
+            .content-container {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP INFORMATION STRIP -->
+    <div class="top-info-strip">
+        <div><i class="fa-solid fa-star" style="color:var(--ui-yellow);"></i> 100% Private Guided Tour Comfort</div>
+        <div><i class="fa-solid fa-headset"></i> Contact Driver: <a href="tel:+919876543210">Jayubha Jadeja</a></div>
+    </div>
+
+    <!-- HEADER LOGO & TITLE -->
+    <header>
+        <div class="nav-wrapper">
+            <div class="logo-frame">
+                
+                <img src="/image.png" alt="Company Logo">
+            </div>
+            <div class="company-heading">
+                <h1>JAY MATAJI TOUR &amp; TRAVELS</h1>
+                <p>Private Door-To-Door Tour &amp; Car Rental Service</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- FULL WIDTH YELLOW HERO SHOWCASE -->
+    <section class="hero-showcase">\<span class="badge"><i class="fa-solid fa-plane-departure"></i> AIRPORT PICKUP & DROP</span>
+        <h2>Welcome to Jay Mataji Travels</h2>
+        <p>Premium customized home-to-home private travel packages. We pick you up right from your doorstep, chauffeur you seamlessly across all holiday attractions, and return you back inside your home safely.</p>
+        
+        <div style="max-width: 450px; margin: 0 auto;">
+            <div class="grid-actions">
+                <a href="tel:+919876543210" class="ui-btn btn-ui-call"><i class="fa-solid fa-phone"></i> Call To Book</a>
+                <a href="https://wa.me/919876543210?text=Hello%20Jayubha%20Ji,%20I%20visited%20your%20website%20and%20want%20to%20plan%20a%20private%20tour." target="_blank" class="ui-btn btn-ui-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Chat</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOVING ANIMATED CAR TRACK STRIP -->
+    <div class="animation-highway">
+        <div class="running-car">
+            <i class="fa-solid fa-taxi"></i>
+        </div>
+    </div>
+
+    <!-- MAIN FLEET CARDS -->
+    <main class="content-container">
+        <h2 class="ui-section-title">Our Cabs &amp; Pricing</h2>
+        
+        <div class="fleet-grid">
+            <!-- COMFORT SEDAN VEHICLE CARD -->
+            <div class="fleet-card">
+                <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=500&q=80" alt="Comfort Sedan Cab" class="fleet-img">
+                <div class="fleet-info">
+                    <h3>Comfort Sedan Cab</h3>
+                    <div class="ui-rate-badge">₹10 <span>/ Per KM</span></div>
+                    <ul class="fleet-features">
+                        <li><i class="fa-solid fa-square-check"></i> Passenger Capacity: Comfortably seats up to 4 + 1 Driver</li>
+                        <li><i class="fa-solid fa-square-check"></i> High-Efficiency Air Conditioning (AC)</li>
+                        <li><i class="fa-solid fa-square-check"></i> Best for Airport Trips &amp; Direct One-Way Outstation Travel</li>
+                    </ul>
+                    <div class="grid-actions">
+                        <a href="tel:+919876543210" class="ui-btn btn-ui-call"><i class="fa-solid fa-phone"></i> Book Sedan</a>
+                        <a href="https://wa.me/919876543210?text=Hi%20Jayubha%20Ji,%20I'm%20interested%20in%20booking%20the%20Sedan%20Cab%20at%20Rs.10/KM." target="_blank" class="ui-btn btn-ui-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREMIUM FAMILY SUV VEHICLE CARD -->
+            <div class="fleet-card">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=500&q=80" alt="Premium SUV Cab" class="fleet-img">
+                <div class="fleet-info">
+                    <h3>Premium SUV Cab</h3>
+                    <div class="ui-rate-badge">₹13 <span>/ Per KM</span></div>
+                    <ul class="fleet-features">
+                        <li><i class="fa-solid fa-square-check"></i> Passenger Capacity: Full 6-7 Seating Layout Options</li>
+                        <li><i class="fa-solid fa-square-check"></i> High Ground Clearance with Heavy Top Carrier Storage</li>
+                        <li><i class="fa-solid fa-square-check"></i> Perfect choice for Family Hill-Station Vacation Tours</li>
+                    </ul>
+                    <div class="grid-actions">
+                        <a href="tel:+919876543210" class="ui-btn btn-ui-call"><i class="fa-solid fa-phone"></i> Book SUV</a>
+                        <a href="https://wa.me/919876543210?text=Hi%20Jayubha%20Ji,%20I'm%20interested%20in%20booking%20the%20SUV%20Cab%20at%20Rs.13/KM." target="_blank" class="ui-btn btn-ui-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HYUNDAI ARTICA VEHICLE CARD -->
+            <div class="fleet-card">
+                <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=500&q=80" alt="Hyundai Artica Cab" class="fleet-img">
+                <div class="fleet-info">
+                    <h3>Hyundai Artica</h3>
+                    <div class="ui-rate-badge">₹12 <span>/ Per KM</span></div>
+                    <ul class="fleet-features">
+                        <li><i class="fa-solid fa-square-check"></i> Comfortable hatchback for city travel and short tours</li>
+                        <li><i class="fa-solid fa-square-check"></i> Smooth ride with AC and spacious boot</li>
+                        <li><i class="fa-solid fa-square-check"></i> Ideal for airport pickups, local sightseeing, and quick trips</li>
+                    </ul>
+                    <div class="grid-actions">
+                        <a href="tel:+919876543210" class="ui-btn btn-ui-call"><i class="fa-solid fa-phone"></i> Book Artica</a>
+                        <a href="https://wa.me/919876543210?text=Hi%20Jayubha%20Ji,%20I'm%20interested%20in%20booking%20the%20Artica%20Cab%20at%20Rs.12/KM." target="_blank" class="ui-btn btn-ui-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- DETAILED CONTACT US INFOBAR PANEL -->
+    <footer class="contact-us-bar">
+        <div class="contact-wrapper">
+            
+            <div class="contact-block">
+                <h4>About Our Services</h4>
+                <div class="contact-item">
+                    <p><strong>CAB NAME: JAY MATAJI TOUR &amp; TRAVELS</strong><br>
+                    Premium personal touring agency operated directly by driver-owner Jayubha Jadeja. Dedicated to offering safe, entirely private custom door-to-door tours, outstation weekend round-trips, and reliable 24/7 airport transfers.</p>
+                </div>
+            </div>
+
+            <div class="contact-block">
+                <h4>Contact Us</h4>
+                
+                <div class="contact-item">
+                    <i class="fa-solid fa-user-check"></i>
+                    <div>
+                        <strong>Owner &amp; Chauffeur</strong>
+                        JAYUBHA JADEJA
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <strong>Direct Hotline Dial</strong>
+                        <a href="tel:+919876543210">+91 98765 43210</a> (Tap to Call)
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <div>
+                        <strong>WhatsApp Live Chat Support</strong>
+                        <a href="https://wa.me/919876543210" target="_blank">Click to Message Directly</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fa-solid fa-route"></i>
+                    <div>
+                        <strong>Specialization Area</strong>
+                        Airport Pickup &amp; Drops, Personalized Multi-City Vacation Tours &amp; Round Trips.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- MOBILE FLOATING CALL BAR -->
+    <div class="mobile-quick-tap">
+        <a href="tel:+919876543210" class="ui-btn btn-ui-call"><i class="fa-solid fa-phone"></i> Tap to Call</a>
+        <a href="https://wa.me/919876543210?text=Hello%20Jayubha%20Ji,%20I'm%20on%20your%20website%20and%20want%20to%20enquire%20about%20a%20ride." target="_blank" class="ui-btn btn-ui-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+    </div>
+
+</body>
+</html>
