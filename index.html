@@ -172,6 +172,9 @@
 
         /* --- Reviews & Form Section --- */
         .reviews-container {
+            display: flex-direction-column;
+        }
+        #reviewScrollContainer{
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 3rem;
@@ -238,7 +241,7 @@
         /* --- Scroller Shell Viewport Layout Constraints --- */
         .single-card-viewport {
             width: 100%;
-            max-width: 380px;
+            max-width: 1380px;
             margin: 0 auto;
             overflow: hidden;
             position: relative;
@@ -265,12 +268,17 @@
 <body>
 
     <!-- Floating Sticky WhatsApp Button -->
-    <a href="https://wa.me/919999999999?text=Hi%20Jayubha,%20I%20want%20to%20book%20a%20cab." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/917016551622?text=Hi%20Jayubha,%20I%20want%20to%20book%20a%20cab." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <nav id="navbar">
-        <div class="logo"><i class="fa-solid fa-taxi"></i> JAY MATAJI <span>TOUR & TRAVELLES</span></div>
+        <!-- Logo Image Integration Box -->
+        <a href="#" style="display: flex; align-items: center; max-height: 50px;">
+            <!-- Save your downloaded logo design image as 'logo.png' in your project root directory -->
+            <img src="logo.png" alt="Jay Mataji Tours And Travels Logo" style="height: 45px; width: auto; object-fit: contain; max-width: 180px;">
+        </a>
+        
         <ul class="nav-links">
             <li><a href="#services">Services</a></li>
             <li><a href="#fleet">Our Fleet</a></li>
@@ -278,26 +286,115 @@
             <li><a href="#reviews">Reviews</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="tel:+919999999999" class="btn-call"><i class="fa-solid fa-phone"></i> Book Now</a>
+        <a href="tel:+917016551622" class="btn-call"><i class="fa-solid fa-phone"></i> Book Now</a>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="stats-badge">⭐ Gujarat's #1 Trusted Travel Partner</div>
-            <h1>Premium Travel,<br>Reliable Journeys.</h1>
-            <p>Experience the ultimate comfort and safety with <strong>Jay Mataji Tour & Travelles</strong>. Managed by <strong>Jayubha Jadeja</strong>, we ensure premium airport transfers, local city commutes, and smooth outstation journeys across Gujarat.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
-                <span><i class="fa-solid fa-check" style="color: var(--primary)"></i> Background Verified Drivers</span>
-                <span><i class="fa-solid fa-check" style="color: var(--primary)"></i> 24/7 Dedicated Support</span>
-                <span><i class="fa-solid fa-plane-departure" style="color: var(--primary)"></i> Expert Airport Pickup & Drop</span>
+    <section class="hero" style="height: auto; min-height: 100vh; padding: 7rem 5% 3rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;">
+        
+        <!-- ROW 1 (TOP ON MOBILE): Professional Driver Profile Identity Card -->
+        <div style="width: 100%; max-width: 400px; margin: 0 auto; order: 1;">
+            <div style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); padding: 2rem 1.5rem; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); text-align: center;">
+                <div class="stats-badge" style="background: rgba(243, 156, 18, 0.15); color: var(--primary); font-weight: 600; border: 1px solid rgba(243, 156, 18, 0.3); margin-bottom: 1.2rem;">
+                <i class="fa-solid fa-id-card"></i> Taxi Cab Services
             </div>
-            
-            <div class="hero-actions">
-                <a href="tel:+919999999999" class="btn-call" style="padding: 0.75rem 2rem;"><i class="fa-solid fa-phone"></i> Call Jayubha</a>
-                <a href="https://wa.me/919999999999?text=Hello%20Jayubha%20Jadeja,%20I%20would%20like%20to%20inquire%20about%20a%20cab%20booking." target="_blank" rel="noopener noreferrer" class="btn-hero-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+                <!-- Profile Image Holder Container -->
+                <div style="width: 130px; height: 130px; margin: 0 auto 1.2rem; border-radius: 50%; border: 4px solid var(--primary); overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.2); background: #34495e;">
+                    <!-- Swap src placeholder attribute with his clean professional headshot portrait -->
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Jayubha Jadeja Portrait" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <h3 style="color: #fff; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 0.5px;">JAYUBHA JADEJA</h3>
+                <p style="color: var(--primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.2rem;"><p>Managing Owner & Lead Operator</p>
+                
+                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.2rem;">
+
+                <!-- Core Operator Attributes Block -->
+                <div style="text-align: left; display: flex; flex-direction: column; gap: 10px; color: #dcdde1; font-size: 0.85rem;">
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 6px;">
+                        <span style="color: #718093; font-weight: 600;"><i class="fa-solid fa-location-crosshairs" style="width: 18px;"></i> Base Hub:</span>
+                        <span style="color: #fff; font-weight: 600;">Jamnagar, Gujarat</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 6px;">
+                        <span style="color: #718093; font-weight: 600;"><i class="fa-solid fa-shield" style="width: 18px;"></i> Police Record:</span>
+                        <span style="color: var(--success); font-weight: 600;"><i class="fa-solid fa-circle-check"></i> Clean / Verified</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 6px;">
+                        <span style="color: #718093; font-weight: 600;"><i class="fa-solid fa-star" style="width: 18px;"></i> Operator Rating:</span>
+                        <span style="color: #f1c40f; font-weight: 600;">4.9 / 5.0 (500+ Trips)</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 2px;">
+                        <span style="color: #718093; font-weight: 600;"><i class="fa-solid fa-phone-volume" style="width: 18px;"></i> Contact No:</span>
+                        <a href="tel:+917016551622" style="color: var(--primary); font-weight: 700; font-size: 0.95rem;">+91 70165 51622</a>
+                    </div>
+                    <!-- Primary Contact Triggers -->
+            <div class="hero-actions" style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 0 auto;">
+                <a href="tel:+7016551622" class="btn-call" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; justify-content: center; width: 100%; box-shadow: 0 4px 15px rgba(243, 156, 18, 0.25);"><i class="fa-solid fa-phone"></i> Call Jayubha</a>
+                <a href="https://wa.me/917016551622?text=Hello%20Jayubha%20Jadeja,%20I%20would%20like%20to%20inquire%20about%20a%20cab%20booking." target="_blank" rel="noopener noreferrer" class="btn-hero-wa" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; justify-content: center; width: 100%; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.15); margin-left: 0;"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+            </div>
+                </div>
+
             </div>
         </div>
+
+        <!-- ROW 2 (BOTTOM ON MOBILE): Professional Credentials & Description Overview -->
+        <div class="hero-content" style="width: 100%; max-width: 550px; text-align: center; order: 2;">
+            <div class="stats-badge" style="background: rgba(243, 156, 18, 0.15); color: var(--primary); font-weight: 600; border: 1px solid rgba(243, 156, 18, 0.3); margin-bottom: 1.2rem;">
+                <i class="fa-solid fa-id-card"></i> Taxi Cab Services
+            </div>
+            <h2 style="color: #fff; font-size: 2.2rem; margin-bottom: 1rem; line-height: 1.2; font-weight: 700;">Your Journey,<br>My Responsibility.</h2>
+            <p style="font-size: 0.95rem; margin-bottom: 1.8rem; color: #dcdde1; line-height: 1.7; text-align: justify; text-align-last: center;">
+                Welcome to <strong>Jay Mataji Tour & Travelles</strong>. I am <strong>Jayubha Jadeja</strong>, dedicated to managing and delivering premium, secure transit solutions across Gujarat. Whether navigating critical airport transfers or managing long-distance outstation routes, safety, strict punctuality, and executive comfort are guaranteed.
+            </p>
+            
+            <!-- Quick Credential Checks Grid -->
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 1.8rem; text-align: left;">
+                
+                <span style="display: flex; align-items: center; gap: 8px; color: #fff; font-size: 0.85rem;">
+                    <i class="fa-solid fa-road" style="color: var(--primary); font-size: 1rem; flex-shrink: 0;"></i> 8+ Yrs Exp
+                </span>
+                
+                <span style="display: flex; align-items: center; gap: 8px; color: #fff; font-size: 0.85rem;">
+                    <i class="fa-solid fa-shield-heart" style="color: var(--primary); font-size: 1rem; flex-shrink: 0;"></i> Clean Record
+                </span>
+            </div>
+
+            
+        </div>
     </section>
+
+    <!-- Responsive Styles Adjustment Injection for Desktop Viewports -->
+    <style>
+        @media (min-width: 992px) {
+            .hero {
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                gap: 4rem !important;
+                padding: 8rem 5% 4rem !important;
+            }
+            .hero > div:first-child {
+                order: 2 !important; /* Positions identity card on the right on larger monitors */
+            }
+            .hero-content {
+                order: 1 !important;
+                text-align: left !important;
+            }
+            .hero-content p {
+                text-align: left !important;
+                text-align-last: left !important;
+            }
+            .hero-content .hero-actions {
+                flex-direction: row !important;
+                max-width: none !important;
+                margin: 0 !important;
+            }
+            .hero-content .hero-actions a {
+                width: auto !important;
+            }
+            .hero-content .hero-actions .btn-hero-wa {
+                margin-left: 0 !important;
+            }
+        }
+    </style>
 
     <!-- Services Module Constrained to a Single, Elegant Centered Card -->
     <section id="services" style="overflow: hidden; padding: 5rem 0;">
@@ -315,7 +412,7 @@
                     <div>
                         <i class="fa-solid fa-plane-arrival"></i>
                         <h3>Airport Pickup & Drop</h3>
-                        <p>Punctual, stress-free premium transfers connecting Amreli and all major Gujarat operational airports.</p>
+                        <p>Punctual, stress-free premium transfers connecting Jamnagar and all major Gujarat operational airports.</p>
                         <ul>
                             <li><i class="fa-solid fa-check"></i> Flight Delay Tracking</li>
                             <li><i class="fa-solid fa-check"></i> Meet & Greet Luggage Care</li>
@@ -358,7 +455,7 @@
                     <div>
                         <i class="fa-solid fa-plane-arrival"></i>
                         <h3>Airport Pickup & Drop</h3>
-                        <p>Punctual, stress-free premium transfers connecting Amreli and all major Gujarat operational airports.</p>
+                        <p>Punctual, stress-free premium transfers connecting Jamnagar and all major Gujarat operational airports.</p>
                         <ul>
                             <li><i class="fa-solid fa-check"></i> Flight Delay Tracking</li>
                             <li><i class="fa-solid fa-check"></i> Meet & Greet Luggage Care</li>
@@ -486,7 +583,7 @@
     </section>
 
     <!-- Reviews Module Constrained to a Single, Elegant Centered Card -->
-    <section id="reviews" style="background: var(--white); overflow: hidden; padding: 5rem 0;">
+    <section id="reviews" style="background: var(--white); overflow: hidden; padding: 5rem 0; display: flex-direction-column">
         <div class="section-header" style="padding: 0 5%; pointer-events: none;">
             <h2>What Our Passengers Say</h2>
             <p>Real experiences shared by verified travelers who rode with us.</p>
@@ -540,8 +637,8 @@
             <div>
                 <h4>Contact Info</h4>
                 <ul style="color: #bbb;">
-                    <li><i class="fa-solid fa-location-dot"></i> Adarsh Nagar, Vraj Kunj, Amreli - 365601, Gujarat</li>
-                    <li><a href="tel:+919999999999" style="color:#bbb;"><i class="fa-solid fa-phone"></i> +91 99999 99999</a></li>
+                    <li><i class="fa-solid fa-location-dot"></i> Jamnagar, Gujarat</li>
+                    <li><a href="tel:+917016551622" style="color:#bbb;"><i class="fa-solid fa-phone"></i> +91 70165 51622</a></li>
                     <li><i class="fa-solid fa-clock"></i> 24 Hours / 7 Days Active</li>
                 </ul>
             </div>
