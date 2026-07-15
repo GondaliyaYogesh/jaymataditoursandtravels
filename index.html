@@ -32,6 +32,7 @@
             background-color: var(--light);
             color: var(--text);
             line-height: 1.6;
+            user-select: none;
         }
 
         a { text-decoration: none; color: inherit; }
@@ -89,7 +90,6 @@
         .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; color: #dcdde1; }
         .stats-badge { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; display: inline-block; margin-bottom: 20px;}
 
-        /* Hero Action Buttons Styles */
         .hero-actions { display: flex; gap: 15px; margin-top: 20px; }
         .btn-hero-wa {
             background-color: var(--whatsapp);
@@ -103,30 +103,6 @@
             gap: 8px;
         }
         .btn-hero-wa:hover { opacity: 0.9; color: white; }
-
-        /* Floating Sticky WhatsApp Button Style */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--whatsapp);
-            color: #fff;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            color: #fff;
-        }
 
         .form-group { margin-bottom: 1rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; }
@@ -151,19 +127,20 @@
         .card {
             background: var(--white);
             border-radius: 10px;
-            padding: 0 0 2rem 0;
-            overflow: hidden;
+            padding: 2rem;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s;
             position: relative;
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
         }
-        .card-content { padding: 0 2rem; }
-        .card:hover { transform: translateY(-10px); }
         .card-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            border-radius: 8px;
             margin-bottom: 1.5rem;
         }
         .card i { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; }
@@ -202,7 +179,16 @@
         @media (max-width: 992px) {
             .reviews-container { grid-template-columns: 1fr; }
         }
-        .review-card { background: var(--white); padding: 2rem; border-radius: 10px; border-top: 4px solid var(--primary); margin-bottom: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .review-card { 
+            background: var(--white); 
+            padding: 2rem; 
+            border-radius: 10px; 
+            border-top: 4px solid var(--primary); 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+        }
         .stars { color: #f1c40f; margin-bottom: 1rem; }
         .review-author { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
         .author-icon { background: var(--dark); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; text-transform: uppercase;}
@@ -225,6 +211,40 @@
         }
         .rating-select i.active { color: #f1c40f; }
 
+        /* Floating Sticky WhatsApp Button Style */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            color: #fff;
+        }
+
+        /* --- Scroller Shell Viewport Layout Constraints --- */
+        .single-card-viewport {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            padding: 1rem 0;
+        }
+
         /* --- Contact & Footer --- */
         footer { background: var(--dark); color: white; padding: 3rem 5% 1rem; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
@@ -238,7 +258,6 @@
             .hero { flex-direction: column; justify-content: center; text-align: center; gap: 2rem; height: auto; padding: 8rem 5% 4rem;}
             .hero-content { max-width: 100%; }
             .hero-actions { justify-content: center; }
-            .booking-form { width: 100%; max-width: 500px; }
             .nav-links { display: none; }
         }
     </style>
@@ -273,55 +292,103 @@
                 <span><i class="fa-solid fa-plane-departure" style="color: var(--primary)"></i> Expert Airport Pickup & Drop</span>
             </div>
             
-            <!-- Hero Action Buttons Linked to Call and WhatsApp -->
             <div class="hero-actions">
-                  <a href="tel:+917016551622" class="btn-call" style="padding: 0.75rem 2rem;"><i class="fa-solid fa-phone"></i> Call Jayubha</a>
-                   <a href="https://wa.me/917016551622?text=Hello%20Jayubha%20Jadeja,%20I%20would%20like%20to%20inquire%20about%20a%20cab%20booking." target="_blank" rel="noopener noreferrer" class="btn-hero-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+                <a href="tel:+919999999999" class="btn-call" style="padding: 0.75rem 2rem;"><i class="fa-solid fa-phone"></i> Call Jayubha</a>
+                <a href="https://wa.me/919999999999?text=Hello%20Jayubha%20Jadeja,%20I%20would%20like%20to%20inquire%20about%20a%20cab%20booking." target="_blank" rel="noopener noreferrer" class="btn-hero-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
             </div>
         </div>
     </section>
 
-    <section id="services">
-        <div class="section-header">
+    <!-- Services Module Constrained to a Single, Elegant Centered Card -->
+    <section id="services" style="overflow: hidden; padding: 5rem 0;">
+        <div class="section-header" style="padding: 0 5%; pointer-events: none;">
             <h2>Our Expertise</h2>
             <p>Tailored Travel Solutions designed around your specific routing needs.</p>
         </div>
-        <div class="grid-3">
-            <div class="card" style="border: 2px solid var(--primary);">
-                <span style="background: var(--primary); color: white; padding: 2px 10px; border-radius: 10px; font-size: 0.8rem; position: absolute; top: 10px; right: 20px; font-weight:bold;">Specialty</span>
-                <div class="card-content" style="padding-top: 2rem;">
-                    <i class="fa-solid fa-plane-arrival"></i>
-                    <h3>Airport Pickup & Drop</h3>
-                    <p>Punctual, stress-free premium transfers connecting Amreli and all major Gujarat operational airports.</p>
-                    <ul>
-                        <li><i class="fa-solid fa-check"></i> Flight Delay Tracking</li>
-                        <li><i class="fa-solid fa-check"></i> Meet & Greet Luggage Care</li>
-                        <li><i class="fa-solid fa-check"></i> Zero Waiting Charges</li>
-                    </ul>
+        
+        <div id="scrollContainer" class="single-card-viewport" style="cursor: grab;">
+            <div id="scrollTrack" style="display: flex; gap: 2rem; width: max-content; will-change: transform;">
+                
+                <!-- Card 1 -->
+                <div class="card" style="border: 2px solid var(--primary); flex-shrink: 0;">
+                    <span style="background: var(--primary); color: white; padding: 2px 10px; border-radius: 10px; font-size: 0.8rem; position: absolute; top: 10px; right: 20px; font-weight:bold;">Specialty</span>
+                    <div>
+                        <i class="fa-solid fa-plane-arrival"></i>
+                        <h3>Airport Pickup & Drop</h3>
+                        <p>Punctual, stress-free premium transfers connecting Amreli and all major Gujarat operational airports.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Flight Delay Tracking</li>
+                            <li><i class="fa-solid fa-check"></i> Meet & Greet Luggage Care</li>
+                            <li><i class="fa-solid fa-check"></i> Zero Waiting Charges</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-content" style="padding-top: 2rem;">
-                    <i class="fa-solid fa-road"></i>
-                    <h3>Outstation Rides</h3>
-                    <p>Comfortable long-distance rides tailored for family stays, vacations, or businesses.</p>
-                    <ul>
-                        <li><i class="fa-solid fa-check"></i> Highway Trained Experts</li>
-                        <li><i class="fa-solid fa-check"></i> Flexible Routes</li>
-                        <li><i class="fa-solid fa-check"></i> All-Inclusive Transparent Structure</li>
-                    </ul>
+                
+                <!-- Card 2 -->
+                <div class="card" style="flex-shrink: 0;">
+                    <div>
+                        <i class="fa-solid fa-road"></i>
+                        <h3>Outstation Rides</h3>
+                        <p>Comfortable long-distance rides tailored for family stays, vacations, or businesses.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Highway Trained Experts</li>
+                            <li><i class="fa-solid fa-check"></i> Flexible Routes</li>
+                            <li><i class="fa-solid fa-check"></i> All-Inclusive Transparent Structure</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-content" style="padding-top: 2rem;">
-                    <i class="fa-solid fa-city"></i>
-                    <h3>City Taxi</h3>
-                    <p>Swift local point-to-point transit setup for your daily commutes or commercial events.</p>
-                    <ul>
-                        <li><i class="fa-solid fa-check"></i> Fully Air Conditioned</li>
-                        <li><i class="fa-solid fa-check"></i> Safe Local Protocols</li>
-                        <li><i class="fa-solid fa-check"></i> Instant Deploy Options</li>
-                    </ul>
+                
+                <!-- Card 3 -->
+                <div class="card" style="flex-shrink: 0;">
+                    <div>
+                        <i class="fa-solid fa-city"></i>
+                        <h3>City Taxi</h3>
+                        <p>Swift local point-to-point transit setup for your daily commutes or commercial events.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Fully Air Conditioned</li>
+                            <li><i class="fa-solid fa-check"></i> Safe Local Protocols</li>
+                            <li><i class="fa-solid fa-check"></i> Instant Deploy Options</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- --- DUPLICATE SET FOR SMOOTH INFINITE RESUMPTION --- -->
+                <div class="card" style="border: 2px solid var(--primary); flex-shrink: 0;">
+                    <span style="background: var(--primary); color: white; padding: 2px 10px; border-radius: 10px; font-size: 0.8rem; position: absolute; top: 10px; right: 20px; font-weight:bold;">Specialty</span>
+                    <div>
+                        <i class="fa-solid fa-plane-arrival"></i>
+                        <h3>Airport Pickup & Drop</h3>
+                        <p>Punctual, stress-free premium transfers connecting Amreli and all major Gujarat operational airports.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Flight Delay Tracking</li>
+                            <li><i class="fa-solid fa-check"></i> Meet & Greet Luggage Care</li>
+                            <li><i class="fa-solid fa-check"></i> Zero Waiting Charges</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card" style="flex-shrink: 0;">
+                    <div>
+                        <i class="fa-solid fa-road"></i>
+                        <h3>Outstation Rides</h3>
+                        <p>Comfortable long-distance rides tailored for family stays, vacations, or businesses.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Highway Trained Experts</li>
+                            <li><i class="fa-solid fa-check"></i> Flexible Routes</li>
+                            <li><i class="fa-solid fa-check"></i> All-Inclusive Transparent Structure</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card" style="flex-shrink: 0;">
+                    <div>
+                        <i class="fa-solid fa-city"></i>
+                        <h3>City Taxi</h3>
+                        <p>Swift local point-to-point transit setup for your daily commutes or commercial events.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Fully Air Conditioned</li>
+                            <li><i class="fa-solid fa-check"></i> Safe Local Protocols</li>
+                            <li><i class="fa-solid fa-check"></i> Instant Deploy Options</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -335,7 +402,7 @@
         <div class="grid-3">
             <div class="card">
                 <img src="dzire.webp" alt="Budget Sedan" class="card-img">
-                <div class="card-content">
+                <div>
                     <h3>Budget Sedan</h3>
                     <p>Perfect for solo, corporate, or small family journeys with excellent trunk space.</p>
                     <div style="display: flex; justify-content: center; gap: 15px; margin: 15px 0; color: var(--text-light);">
@@ -348,7 +415,7 @@
             </div>
             <div class="card" style="border: 2px solid var(--primary);">
                 <img src="ertiga.png" alt="Maruti Ertiga SUV" class="card-img">
-                <div class="card-content">
+                <div>
                     <h3>Premium SUV (Ertiga)</h3>
                     <p>Spacious, ergonomic MUV design optimal for large families, group tours, or luxury trips.</p>
                     <div style="display: flex; justify-content: center; gap: 15px; margin: 15px 0; color: var(--text-light);">
@@ -418,14 +485,19 @@
         </div>
     </section>
 
-    <section id="reviews" style="background: var(--white);">
-        <div class="section-header">
+    <!-- Reviews Module Constrained to a Single, Elegant Centered Card -->
+    <section id="reviews" style="background: var(--white); overflow: hidden; padding: 5rem 0;">
+        <div class="section-header" style="padding: 0 5%; pointer-events: none;">
             <h2>What Our Passengers Say</h2>
             <p>Real experiences shared by verified travelers who rode with us.</p>
         </div>
         
         <div class="reviews-container">
-            <div id="reviewsList"></div>
+            <div id="reviewScrollContainer" class="single-card-viewport" style="cursor: grab;">
+                <div id="reviewsList" style="display: flex; gap: 2rem; width: max-content; will-change: transform;">
+                    <!-- Supabase elements render dynamically here -->
+                </div>
+            </div>
 
             <div class="add-review-form">
                 <h3>Leave a Review</h3>
@@ -469,7 +541,7 @@
                 <h4>Contact Info</h4>
                 <ul style="color: #bbb;">
                     <li><i class="fa-solid fa-location-dot"></i> Adarsh Nagar, Vraj Kunj, Amreli - 365601, Gujarat</li>
-                    <li><a href="tel:+917016551622" style="color:#bbb;"><i class="fa-solid fa-phone"></i> +91 99999 99999</a></li>
+                    <li><a href="tel:+919999999999" style="color:#bbb;"><i class="fa-solid fa-phone"></i> +91 99999 99999</a></li>
                     <li><i class="fa-solid fa-clock"></i> 24 Hours / 7 Days Active</li>
                 </ul>
             </div>
@@ -508,16 +580,19 @@
                 nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
             }
         });
-
-        // --- Public Direct Database Configuration ---
-        // Fill your Supabase Credentials below to make the live reviews work instantly
-       // It is 100% safe to leave these keys completely public on GitHub.
+     // It is 100% safe to leave these keys completely public on GitHub.
 const SUPABASE_URL = "https://lxjuwsnzzzjjhstlnnac.supabase.co"; 
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx4anV3c256enpqamhzdGxubmFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyNjA3OTksImV4cCI6MjA5ODgzNjc5OX0.kgvc48jDE_yKVvp24ptbQSwIZW3KPg4APzIVuWt-VAw"; // Use the public 'anon' key, NOT the service_role key
+        // --- Public Direct Database Configuration ---
+
+        let currentReviewX = 0;
+        let isReviewDragging = false;
+        let startReviewX = 0;
+        let reviewAutoscrollSpeed = 0.6; 
+        const reviewTrackNode = document.getElementById('reviewsList');
+
         // Function 1: Get Reviews directly from the database server
         async function fetchAndRenderReviews() {
-            const reviewsContainer = document.getElementById('reviewsList');
-            
             try {
                 const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews?select=*&order=created_at.desc`, {
                     method: 'GET',
@@ -530,19 +605,20 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
                 if (!response.ok) throw new Error('Database server refused communication');
                 
                 const liveReviews = await response.json();
-                reviewsContainer.innerHTML = '';
+                reviewTrackNode.innerHTML = '';
 
                 if (liveReviews.length === 0) {
-                    reviewsContainer.innerHTML = '<p style="color:var(--text-light)">No reviews found. Be the first to add one!</p>';
+                    reviewTrackNode.innerHTML = '<p style="color:var(--text-light); padding: 2rem;">No reviews found. Be the first to add one!</p>';
                     return;
                 }
 
+                let cardsHTML = '';
                 liveReviews.forEach(rev => {
                     let ratingStars = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
                     let initial = rev.name ? rev.name.charAt(0) : 'J';
                     
-                    reviewsContainer.innerHTML += `
-                        <div class="review-card">
+                    cardsHTML += `
+                        <div class="review-card" style="flex-shrink: 0;">
                             <div class="stars">${ratingStars}</div>
                             <p>"${rev.comment}"</p>
                             <div class="review-author">
@@ -555,9 +631,12 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
                         </div>
                     `;
                 });
+
+                // Cloned once to provide continuous edge resetting
+                reviewTrackNode.innerHTML = cardsHTML + cardsHTML;
             } catch (error) {
                 console.error('Error fetching data:', error);
-                reviewsContainer.innerHTML = '<p style="color:red;">Unable to load live reviews from database server.</p>';
+                reviewTrackNode.innerHTML = '<p style="color:red; padding: 2rem;">Unable to load live reviews from database server.</p>';
             }
         }
 
@@ -606,16 +685,10 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
                 if (response.ok) {
                     alert('Thank you! Your review has been saved directly to the database server.');
                     this.reset();
-                    
-                    // Reset stars back to a 5-star default
                     starsSelector.forEach(s => s.classList.add('active'));
                     userSelectedRating = 5;
-                    
-                    // Refresh layout dynamically without reloading page
                     fetchAndRenderReviews();
                 } else {
-                    const errData = await response.json();
-                    console.error('Database rejection message:', errData);
                     alert('Database rejected submission. Check if RLS is disabled in Supabase.');
                 }
             } catch (error) {
@@ -624,8 +697,89 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
             }
         });
 
-        // Trigger dynamic loading instantly on load
-        document.addEventListener('DOMContentLoaded', fetchAndRenderReviews);
+        // --- Layout Dual Physics Control Logic Engine ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const sContainer = document.getElementById('scrollContainer');
+            const sTrack = document.getElementById('scrollTrack');
+            let currentServicesX = 0;
+            let isServicesDragging = false;
+            let startServicesX = 0;
+            let servicesSpeed = 0.8;
+
+            // Offset parameters adjusted perfectly for singular cards (360px wide + 32px flex gap width)
+            const getServicesLimit = () => (sTrack.scrollWidth / 2) + 16;
+            const getReviewLimit = () => (reviewTrackNode.scrollWidth / 2) + 16;
+
+            function corePhysicsLoop() {
+                // 1. Move Services
+                if (!isServicesDragging) {
+                    currentServicesX -= servicesSpeed;
+                    if (Math.abs(currentServicesX) >= getServicesLimit()) currentServicesX = 0;
+                    sTrack.style.transform = `translateX(${currentServicesX}px)`;
+                }
+                // 2. Move Reviews
+                if (!isReviewDragging && reviewTrackNode.scrollWidth > 0) {
+                    currentReviewX -= reviewAutoscrollSpeed;
+                    if (Math.abs(currentReviewX) >= getReviewLimit()) currentReviewX = 0;
+                    reviewTrackNode.style.transform = `translateX(${currentReviewX}px)`;
+                }
+                requestAnimationFrame(corePhysicsLoop);
+            }
+            requestAnimationFrame(corePhysicsLoop);
+
+            // Drag Handlers for Services Track
+            const startServicesDrag = (e) => {
+                isServicesDragging = true;
+                sContainer.style.cursor = 'grabbing';
+                startServicesX = (e.pageX || e.touches[0].pageX) - currentServicesX;
+            };
+            const moveServicesDrag = (e) => {
+                if (!isServicesDragging) return;
+                const x = e.pageX || e.touches[0].pageX;
+                currentServicesX = x - startServicesX;
+                const limit = getServicesLimit();
+                if (currentServicesX > 0) { currentServicesX = -limit; startServicesX = x - currentServicesX; }
+                else if (Math.abs(currentServicesX) >= limit) { currentServicesX = 0; startServicesX = x - currentServicesX; }
+                sTrack.style.transform = `translateX(${currentServicesX}px)`;
+            };
+            const stopServicesDrag = () => { isServicesDragging = false; sContainer.style.cursor = 'grab'; };
+
+            sContainer.addEventListener('mousedown', startServicesDrag);
+            window.addEventListener('mousemove', moveServicesDrag);
+            window.addEventListener('mouseup', stopServicesDrag);
+            sContainer.addEventListener('touchstart', startServicesDrag, { passive: true });
+            window.addEventListener('touchmove', moveServicesDrag, { passive: false });
+            window.addEventListener('touchend', stopServicesDrag);
+
+            // Drag Handlers for Reviews Track
+            const rContainer = document.getElementById('reviewScrollContainer');
+            const startReviewDrag = (e) => {
+                if(reviewTrackNode.scrollWidth <= 0) return;
+                isReviewDragging = true;
+                rContainer.style.cursor = 'grabbing';
+                startReviewX = (e.pageX || e.touches[0].pageX) - currentReviewX;
+            };
+            const moveReviewDrag = (e) => {
+                if (!isReviewDragging) return;
+                const x = e.pageX || e.touches[0].pageX;
+                currentReviewX = x - startReviewX;
+                const limit = getReviewLimit();
+                if (currentReviewX > 0) { currentReviewX = -limit; startReviewX = x - currentReviewX; }
+                else if (Math.abs(currentReviewX) >= limit) { currentReviewX = 0; startReviewX = x - currentReviewX; }
+                reviewTrackNode.style.transform = `translateX(${currentReviewX}px)`;
+            };
+            const stopReviewDrag = () => { isReviewDragging = false; rContainer.style.cursor = 'grab'; };
+
+            rContainer.addEventListener('mousedown', startReviewDrag);
+            window.addEventListener('mousemove', moveReviewDrag);
+            window.addEventListener('mouseup', stopReviewDrag);
+            rContainer.addEventListener('touchstart', startReviewDrag, { passive: true });
+            window.addEventListener('touchmove', moveReviewDrag, { passive: false });
+            window.addEventListener('touchend', stopReviewDrag);
+
+            // Fetch live database inputs
+            fetchAndRenderReviews();
+        });
     </script>
 </body>
 </html>
